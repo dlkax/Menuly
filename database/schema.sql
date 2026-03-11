@@ -94,3 +94,11 @@ CREATE TABLE messages (
     session_state VARCHAR(50),
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+ALTER TABLE restaurants ADD COLUMN updated_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE locations ADD COLUMN updated_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE locations ADD COLUMN has_delivery BOOLEAN DEFAULT true;
+ALTER TABLE locations ADD COLUMN has_reservations BOOLEAN DEFAULT true;
+ALTER TABLE dishes ADD COLUMN updated_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE orders ADD COLUMN updated_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE reservations ADD COLUMN updated_at TIMESTAMP DEFAULT NOW();
