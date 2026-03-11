@@ -1,14 +1,22 @@
 from twilio.rest import Client
+import os
+from dotenv import load_dotenv
 
-account_sid = "ACfc6a188da79f2eee1bc809717450dda4"
-auth_token = "69a93ed70d86916e10b7194725d2b948"
+# Carregar variáveis de ambiente
+load_dotenv()
+
+# Pegar credenciais do .env
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 client = Client(account_sid, auth_token)
 
-message = client.messages.create(
-    from_="whatsapp:+14155238886",
-    body="Menuly funcionando 🚀",
-    to="whatsapp:+5511948378344"
-)
-
-print(message.sid)
+def process_message(data):
+    """Processa mensagem do WhatsApp"""
+    message = client.messages.create(
+        from_=os.getenv("WHATSAPP_FROM"),
+        body="Menuly funcionando 🍴",
+        to=os.getenv("WHATSAPP_TO")
+    )
+    print(message.sid)
+    return message.sid
